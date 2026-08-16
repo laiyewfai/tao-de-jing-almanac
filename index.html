@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>道德经 · 人生年历 — Tao De Jing Almanac</title>
+<title>道德经 · 下一程 — Tao De Jing · The Next Stage</title>
 <style>
   :root {
     --paper: #f3f6ee;
@@ -48,6 +48,13 @@
     background-size: 140px 140px;
     pointer-events: none;
   }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
   .seal {
     display: inline-block;
     color: var(--paper);
@@ -58,27 +65,45 @@
     border-radius: 6px;
     letter-spacing: 2px;
     box-shadow: 0 2px 12px rgba(31,122,77,.35);
-    margin-bottom: 0;
     writing-mode: horizontal-tb;
   }
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1080px;
-    margin: 0 auto;
+  .lang-switch {
+    display: inline-flex;
+    border: 1px solid var(--seal);
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--paper-deep);
+    box-shadow: 0 2px 8px rgba(31,122,77,.2);
   }
+  .lang-switch button {
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--ink-soft);
+    background: transparent;
+    border: none;
+    padding: 6px 18px;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .lang-switch button + button { border-left: 1px solid var(--line); }
+  .lang-switch button.active {
+    background: var(--seal);
+    color: var(--paper);
+  }
+  .lang-switch button:not(.active):hover { color: var(--seal); }
   .title-zh {
     font-size: 52px;
     letter-spacing: 14px;
     font-weight: 600;
+    margin-top: 40px;
     margin-bottom: 10px;
     text-indent: 14px;
   }
   .title-en {
     font-family: Georgia, serif;
-    font-size: 17px;
-    letter-spacing: 7px;
+    font-size: 16px;
+    letter-spacing: 6px;
     color: var(--ink-soft);
     text-transform: uppercase;
     margin-bottom: 26px;
@@ -131,31 +156,6 @@
     transition: color .2s, border-color .2s;
   }
   nav a:hover { color: var(--seal); border-bottom-color: var(--seal); }
-  .lang-switch {
-    display: inline-flex;
-    border: 1px solid var(--seal);
-    border-radius: 22px;
-    overflow: hidden;
-    background: var(--paper-deep);
-    box-shadow: 0 2px 8px rgba(31,122,77,.2);
-  }
-  .lang-switch button {
-    font-family: inherit;
-    font-size: 13px;
-    letter-spacing: 1px;
-    color: var(--ink-soft);
-    background: transparent;
-    border: none;
-    padding: 6px 18px;
-    cursor: pointer;
-    transition: background .2s, color .2s;
-  }
-  .lang-switch button + button { border-left: 1px solid var(--line); }
-  .lang-switch button.active {
-    background: var(--seal);
-    color: var(--paper);
-  }
-  .lang-switch button:not(.active):hover { color: var(--seal); }
   /* ---------- layout ---------- */
   main { max-width: 820px; margin: 0 auto; padding: 56px 28px 90px; }
   section { margin-bottom: 84px; scroll-margin-top: 64px; }
@@ -188,6 +188,18 @@
   h3::before { content: "—— "; color: var(--gold); }
   ul { margin: 0 0 18px 1.2em; }
   li { margin-bottom: 7px; font-size: 15.5px; }
+  /* ---------- badges 道 / 用 ---------- */
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 2px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    vertical-align: middle;
+  }
+  .badge.dao { color: var(--paper); background: var(--seal); }
+  .badge.yong { color: var(--seal); border: 1px solid var(--seal); background: transparent; }
   /* ---------- callout blocks ---------- */
   .maxim {
     margin: 26px auto;
@@ -209,8 +221,10 @@
   .maxim::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
   .maxim::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
   .maxim .zh { font-size: 30px; letter-spacing: 6px; margin-bottom: 8px; color: var(--ink); }
+  .maxim .zh.small { font-size: 22px; letter-spacing: 3px; line-height: 1.6; }
   .maxim .en { font-size: 14.5px; color: var(--ink-soft); font-style: italic; }
   .maxim .note { font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
+  .maxim .badge { margin-top: 0; }
   blockquote {
     margin: 24px 0;
     padding: 16px 24px;
@@ -282,7 +296,14 @@
   }
   .closing .zh-big { font-size: 24px; letter-spacing: 4px; margin-bottom: 14px; line-height: 1.7; }
   .closing .zh-big em { font-style: normal; color: var(--seal); }
+  .closing .verse { font-size: 18px; letter-spacing: 3px; line-height: 2; margin: 18px auto; max-width: 560px; }
   .closing .en { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: var(--ink-soft); max-width: 560px; margin: 0 auto; line-height: 1.9; }
+  .final-seal {
+    text-align: center;
+    margin: 56px auto 0;
+  }
+  .final-seal .zh { font-size: 26px; letter-spacing: 8px; margin-bottom: 8px; }
+  .final-seal .en { font-size: 13px; color: var(--ink-faint); letter-spacing: 3px; font-family: Georgia, serif; font-style: italic; }
   footer {
     text-align: center;
     padding: 40px 20px 60px;
@@ -305,60 +326,148 @@
       <button type="button" data-lang="en">EN</button>
     </div>
   </div>
-  <h1 class="title-zh">人生年历</h1>
-  <div class="title-en">Tao De Jing · Almanac</div>
+  <h1 class="title-zh">下一程</h1>
+  <div class="title-en">Tao De Jing · The Next Stage</div>
   <div class="rule"></div>
-  <p class="lzh">以《道德经》为镜，对照你真实的人生阶段，为下一个十年所写。</p>
-  <p class="len">A mirror held to the Dao De Jing, written against your actual stage of life — for the next decade.</p>
+  <p class="lzh">以《道德经》为镜，为下一个十年而写的一份人生哲学。</p>
+  <p class="len">A personal philosophy for the next decade, written with the Dao De Jing as its mirror.</p>
   <div class="quote">
     <span class="lzh">真正有用的问题不再是——<em>「我怎样才能更成功？」</em><br>
-    而是——<em>「已经积累了数十年能力、经验、责任与资产之后，接下来的十年到十五年，我该怎么活，才能让自己更自由——而不只是更成功？」</em></span>
+    而是——<em>「已经积累了数十年能力、经验、责任与资产之后，接下来的十年，我该怎么活，才能让自己更自由——而不只是更成功？」</em></span>
     <span class="len">The useful question is no longer — <em>How do I become more successful?</em><br>
-    It is closer to — <em>Having spent decades accumulating capability, experience, responsibility and assets, how should I live the next 10–15 years so that I become <b>freer</b> rather than merely more successful?</em></span>
+    It is closer to — <em>Having spent decades accumulating capability, experience, responsibility and assets, how should I live the next decade so that I become <b>freer</b> rather than merely more successful?</em></span>
   </div>
 </header>
 
 <nav>
-  <a href="#s1"><span class="lzh">一 减法</span><span class="len">1 Subtract</span></a>
+  <a href="#s0"><span class="lzh">序 此刻</span><span class="len">0 Now</span></a>
+  <a href="#root"><span class="lzh">根 静</span><span class="len">Root Stillness</span></a>
+  <a href="#s1"><span class="lzh">一 少</span><span class="len">1 Subtract</span></a>
   <a href="#s2"><span class="lzh">二 无为</span><span class="len">2 Wu Wei</span></a>
   <a href="#s3"><span class="lzh">三 若水</span><span class="len">3 Water</span></a>
   <a href="#s4"><span class="lzh">四 不争</span><span class="len">4 No Contention</span></a>
-  <a href="#s5"><span class="lzh">五 反者</span><span class="len">5 Reversal</span></a>
-  <a href="#s6"><span class="lzh">六 知止</span><span class="len">6 Enough</span></a>
-  <a href="#s7"><span class="lzh">七 弗居</span><span class="len">7 Legacy</span></a>
-  <a href="#s8"><span class="lzh">八 静</span><span class="len">8 Stillness</span></a>
-  <a href="#s9"><span class="lzh">家</span><span class="len">Family</span></a>
-  <a href="#rules"><span class="lzh">七律</span><span class="len">Seven Rules</span></a>
-  <a href="#s10"><span class="lzh">内在自由</span><span class="len">Inner Freedom</span></a>
+  <a href="#s5"><span class="lzh">五 反</span><span class="len">5 Reversal</span></a>
+  <a href="#s6"><span class="lzh">六 止</span><span class="len">6 Enough</span></a>
+  <a href="#s7"><span class="lzh">七 弗居</span><span class="len">7 Not Dwelling</span></a>
+  <a href="#s8"><span class="lzh">八 慈</span><span class="len">8 Compassion</span></a>
+  <a href="#s9"><span class="lzh">终 自由</span><span class="len">End Freedom</span></a>
 </nav>
 
 <main>
+
+<!-- ============ 序 ============ -->
+<section id="s0">
+  <div class="sec-head">
+    <span class="sec-num">序</span>
+    <div>
+      <h2 class="lzh">此时此刻</h2>
+      <h2 class="len">This very moment</h2>
+      <div class="en">Why this philosophy matters now</div>
+    </div>
+  </div>
+  <p class="lead lzh">未来十年，有一件事高于事业与金钱：你有一个很小的女儿。</p>
+  <p class="lead len">Over the coming decade, one thing ranks above career and money: you have a very young daughter.</p>
+  <p class="lzh">这意味着你人生这一阶段有个特别之处：<b>她的童年，与你职业的后半程，正同时发生。</b>这也是为什么你的「优化函数」应该现在就改变——不是某个遥远的将来。</p>
+  <p class="len">This makes this phase of your life unusual: <b>her childhood and your later career years are happening simultaneously.</b> That is why your optimisation function should change now — not at some distant point.</p>
+  <ul>
+    <li class="lzh">事业机会会再来。</li>
+    <li class="len">Career opportunities recur.</li>
+    <li class="lzh">投资机会会再来。</li>
+    <li class="len">Investment opportunities recur.</li>
+    <li class="lzh">项目会再来。</li>
+    <li class="len">Projects recur.</li>
+    <li class="lzh"><b>孩子两岁、五岁、八岁、十二岁——不会再来。</b></li>
+    <li class="len"><b>A child being 2, 5, 8, 12 does not recur.</b></li>
+  </ul>
+  <p class="lzh">有些机会会再来。<b>有些时间不会。</b>你不需要同时把每个维度最大化。人生有季节：</p>
+  <p class="len">Some opportunities return. <b>Some time does not.</b> You don't have to maximise every dimension simultaneously. There are seasons:</p>
+  <div class="maxim">
+    <div class="zh lzh">春生，夏长，秋收，冬藏</div>
+    <div class="zh len">Spring grows, summer extends, autumn harvests, winter stores.</div>
+    <div class="note lzh">有的时期用于建造，有的用于收获，有的用于守护，有的用于在场。</div>
+    <div class="note len">Some periods are for building, some for harvesting, some for protecting, some for being present.</div>
+  </div>
+  <p class="lzh">智慧的人生，不在每个季节都要求最大产出——它先认出<b>现在是什么季节</b>。接下来的每一章，都在回答同一件事：这个季节，该怎么活。</p>
+  <p class="len">A wise life does not demand maximum output in every season — it first recognises <b>which season it is</b>. Every chapter that follows answers one question: how to live in this season.</p>
+</section>
+
+<!-- ============ 根 ============ -->
+<section id="root">
+  <div class="sec-head">
+    <span class="sec-num">根</span>
+    <div>
+      <h2 class="lzh">静</h2>
+      <h2 class="len">Stillness</h2>
+      <div class="en">The root — from which the seven practices grow</div>
+    </div>
+  </div>
+  <p class="lead lzh">静不是一章，也不是打坐。它是<b>根</b>——其余一切修习都从它长出。静让你能够知道：该减去什么、何时不干预、何时弯曲、哪场仗不打、条件何时反转、什么是够、何时离场。</p>
+  <p class="lead len">Stillness is not a chapter, nor is it meditation. It is the <b>root</b> — everything else grows from it. Stillness is what allows you to know: what to remove, when not to intervene, when to bend, which battle not to fight, when conditions are reversing, what is enough, when to leave the stage.</p>
+  <div class="maxim">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">致虚极，守静笃</div>
+    <div class="zh len">Attain the utmost emptiness; hold fast to stillness.</div>
+    <div class="en lzh">《道德经》第十六章</div>
+    <div class="en len">Dao De Jing, Chapter 16</div>
+  </div>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>Never make consequential decisions from psychological noise.<br><span class="zh">永远不要在心理噪声中做重大决定。</span></blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>Never make consequential decisions from psychological noise.<br><span class="zh">永远不要在心理噪声中做重大决定。</span></blockquote>
+  <p class="lzh">噪声包括：恐惧、FOMO、愤怒、自我、难堪、兴奋、证明别人错了的需要——市场崩盘、市场暴涨、别人赞美你、别人批评你。</p>
+  <p class="len">Noise includes: fear, FOMO, anger, ego, embarrassment, excitement, the need to prove someone wrong — markets crashing, markets booming, people praising you, people criticising you.</p>
+  <p class="lzh">所以重大决定之前，<b>先制造距离</b>。两个可用的检验：</p>
+  <p class="len">Before an important decision, therefore: <b>create distance</b>. Two useful tests:</p>
+  <div class="two-col">
+    <div class="panel">
+      <h4><span class="tag lzh">试一</span><span class="tag len">Test I</span><span class="lzh">隐名之问</span><span class="len">The anonymous question</span></h4>
+      <p class="lzh">「如果除了我没人知道这个决定，我还会做吗？」</p>
+      <p class="len">"If nobody knew about this decision except me, would I still make it?"</p>
+      <p class="hint lzh">去掉大量自我。</p>
+      <p class="hint len">Removes an extraordinary amount of ego.</p>
+    </div>
+    <div class="panel">
+      <h4><span class="tag lzh">试二</span><span class="tag len">Test II</span><span class="lzh">十年之问</span><span class="len">The ten-year question</span></h4>
+      <p class="lzh">「如果我要与这个决定共处十年，而不是十天，我会选得不一样吗？」</p>
+      <p class="len">"If I had to live with this decision for ten years rather than ten days, would I choose differently?"</p>
+      <p class="hint lzh">去掉噪声。</p>
+      <p class="hint len">Removes noise.</p>
+    </div>
+  </div>
+  <blockquote class="lzh">静不是不动。<br>静，是让良好判断成为可能的心智空间。<br><span class="zh" style="font-size:16px;">没有内在的中心，你就不知道什么是够、哪些游戏不该玩、何时行动、何时等待、何时握住、何时放手。</span></blockquote>
+  <blockquote class="len">Stillness is not inactivity.<br>It is the psychological space in which good judgment becomes possible.<br><span class="zh" style="font-size:16px;">没有内在的中心，你就不知道什么是够、哪些游戏不该玩、何时行动、何时等待、何时握住、何时放手。</span></blockquote>
+</section>
 
 <!-- ============ 1 ============ -->
 <section id="s1">
   <div class="sec-head">
     <span class="sec-num">壹</span>
     <div>
-      <h2 class="lzh">人生下半场，要从「加法」转向「减法」</h2>
-      <h2 class="len">The second half of life: turn from addition to subtraction</h2>
-      <div class="en">From accumulation → selection</div>
+      <h2 class="lzh">少 — 从积累走向选择</h2>
+      <h2 class="len">Subtract — from accumulation to selection</h2>
+      <div class="en">The next stage: from accumulation to selection</div>
     </div>
   </div>
-  <p class="lead lzh">前半生，加法是合理的——更多的知识、经验、金钱、关系、责任与成就。但总有一天，经济账反转了。</p>
-  <p class="lead len">In the first half of life, addition makes sense — more knowledge, more experience, more money, more relationships, more responsibility, more accomplishment. But one day, the economics reverse.</p>
-  <p class="lzh">碎片化的信息与无尽的机会，带来的不是智慧而是困惑。把「少则得，多则惑」译成当下：<b>更少的目标，产生更大的专注。</b></p>
-  <p class="len">Fragmented information and endless opportunities bring confusion rather than wisdom. Translate 「少则得，多则惑」 into the present: <b>fewer objectives create greater focus.</b></p>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">少则得，多则惑</div>
+    <div class="zh len">Less is more; more is confusion.</div>
+    <div class="en lzh">When everything is important, nothing is important.</div>
+    <div class="en len">When everything is important, nothing is important.</div>
+  </div>
+  <p class="lead lzh">前半生，加法是合理的——更多的知识、经验、金钱、关系、责任与成就。但总有一天，经济账反转了。人生的下一程，不是衰败，而是<b>转变</b>。</p>
+  <p class="lead len">In the first half of life, addition makes sense — more knowledge, more experience, more money, more relationships, more responsibility, more accomplishment. But one day, the economics reverse. The next stage is not decline; it is <b>transition</b>.</p>
+  <p class="lzh">不要问「还能加什么」，要问<b>「什么重要到值得保留」</b>。碎片化的信息与无尽的机会，带来的不是智慧而是困惑——更少的目标，产生更大的专注。</p>
+  <p class="len">Don't ask "what else can I add?" Ask <b>"what is important enough to keep?"</b> Fragmented information and endless opportunities bring confusion rather than wisdom — fewer objectives create greater focus.</p>
   <p class="lzh">在你这个阶段，最稀缺的已不是金钱与机会，而是——</p>
   <p class="len">At your stage, the scarcest resources are no longer money or opportunity. They are:</p>
   <ul>
     <li class="lzh"><b>时间 × 注意力 × 健康 × 心智空间</b></li>
     <li class="len"><b>Time × attention × health × mental space</b></li>
   </ul>
-  <p class="lzh">所以下一个十年，应该是<b>有意的减法</b>：</p>
+  <p class="lzh">所以接下来的十年，应该是<b>有意的减法</b>：</p>
   <p class="len">So the next decade should involve <b>deliberate subtraction</b>:</p>
   <div class="two-col">
     <div class="panel">
-      <h4><span class="tag lzh">减</span><span class="tag len">Less</span><span class="lzh">Less</span><span class="len">Less</span></h4>
+      <h4><span class="badge yong lzh">用</span><span class="badge yong len">Use</span><span class="lzh">减</span><span class="len">Less</span></h4>
       <ul>
         <li class="lzh">无谓的政治与应酬</li>
         <li class="len">unnecessary politics</li>
@@ -377,7 +486,7 @@
       </ul>
     </div>
     <div class="panel">
-      <h4><span class="tag lzh">增</span><span class="tag len">More</span><span class="lzh">More</span><span class="len">More</span></h4>
+      <h4><span class="badge yong lzh">用</span><span class="badge yong len">Use</span><span class="lzh">增</span><span class="len">More</span></h4>
       <ul>
         <li class="lzh">少数重要的关系</li>
         <li class="len">a few important relationships</li>
@@ -394,14 +503,6 @@
       </ul>
     </div>
   </div>
-  <div class="maxim">
-    <div class="zh lzh">少则得，多则惑</div>
-    <div class="zh len">Less is more; more is confusion.</div>
-    <div class="en lzh">When everything is important, nothing is important.</div>
-    <div class="en len">When everything is important, nothing is important.</div>
-    <div class="note lzh">第一戒律</div>
-    <div class="note len">Your first maxim</div>
-  </div>
 </section>
 
 <!-- ============ 2 ============ -->
@@ -409,18 +510,23 @@
   <div class="sec-head">
     <span class="sec-num">贰</span>
     <div>
-      <h2 class="lzh">无为：控制条件，不控制结果</h2>
-      <h2 class="len">Wu wei: control the conditions, not the outcome</h2>
+      <h2 class="lzh">无为 — 尽人事，不强求结果</h2>
+      <h2 class="len">Wu wei — do your part, don't force the outcome</h2>
       <div class="en">Control the conditions, not the outcome</div>
     </div>
   </div>
-  <p class="lead lzh">「无为」不是被动，而是：接受不确定性，做属于你的事，停止强求最终结果。这是对你最有用的一条。</p>
-  <p class="lead len">Wu wei is not passivity: accept uncertainty, do what is yours to do, and stop forcing the eventual outcome. This may be the most useful principle for you.</p>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">无为</div>
+    <div class="zh len">Wu wei</div>
+    <div class="en lzh">不是被动，而是：接受不确定性，做属于你的事，停止强求最终结果。</div>
+    <div class="en len">Not passivity: accept uncertainty, do what is yours to do, and stop forcing the eventual outcome.</div>
+  </div>
 
   <h3 class="lzh">领导</h3>
   <h3 class="len">Leadership</h3>
-  <blockquote class="lzh">方向 → 原则 → 能人 → 边界 → 反馈 → 让系统自己运转。</blockquote>
-  <blockquote class="len">Direction → principles → capable people → boundaries → feedback → let the system work.</blockquote>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>方向 → 原则 → 能人 → 边界 → 反馈 → 让系统自己运转。</blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>Direction → principles → capable people → boundaries → feedback → let the system work.</blockquote>
   <p class="lzh">治大国若烹小鲜——反复翻动小鱼，鱼就碎了。定好条件，停止不断干预。你的本能是结构化、治理、分析、把一切做得可防守——这些是财富，但它们的阴影是<b>过度工程</b>。有时更优的架构是：<b>足够的结构让系统运转，然后放手。</b></p>
   <p class="len">Governing a great state is like cooking a small fish — turn it constantly and it falls apart. Establish the right conditions and stop interfering. Your instinct to structure, govern, analyse and make things defensible is valuable, but its shadow is <b>over-engineering</b>. Sometimes the superior architecture is: <b>enough structure for the system to work, then leave it alone.</b></p>
 
@@ -428,8 +534,8 @@
   <h3 class="len">Investing</h3>
   <p class="lzh">你控制不了市场、利率、衰退、战争、估值、别人。你能控制：买什么、付什么价、分散度、流动性、仓位、质量、耐心、以及是否恐慌。</p>
   <p class="len">You cannot control markets, rates, recessions, wars, valuations, or other investors. You can control: what you buy, the price you pay, diversification, liquidity, position size, quality, patience — and whether you panic.</p>
-  <blockquote class="lzh">Build a portfolio that does not require you to predict the world correctly.<br><span class="zh">建立不需要你猜对世界的组合。</span></blockquote>
-  <blockquote class="len">Build a portfolio that does not require you to predict the world correctly.<br><span class="zh">建立不需要你猜对世界的组合。</span></blockquote>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>Build a portfolio that does not require you to predict the world correctly.<br><span class="zh">建立不需要你猜对世界的组合。</span></blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>Build a portfolio that does not require you to predict the world correctly.<br><span class="zh">建立不需要你猜对世界的组合。</span></blockquote>
   <p class="lzh">这即是道家式的「反脆弱」。</p>
   <p class="len">That is a Daoist version of antifragility.</p>
 
@@ -449,14 +555,20 @@
   <div class="sec-head">
     <span class="sec-num">叁</span>
     <div>
-      <h2 class="lzh">上善若水：外柔内刚</h2>
+      <h2 class="lzh">若水 — 外柔内刚</h2>
       <h2 class="len">Be water — flexible outside, firm inside</h2>
-      <div class="en">Be water — flexible outside, firm inside</div>
+      <div class="en">Adapt without losing principles</div>
     </div>
   </div>
-  <p class="lead lzh">水的特质：低位 + 适应 + 持久 + 不争 + 藏而不露的力量。柔软不是软弱——真正的柔软，来自内心足够强大、已无需不断证明力量。</p>
-  <p class="lead len">Water's qualities: low position, adaptability, persistence, lack of contention, hidden strength. Softness is not weakness — real softness becomes possible only when inner strength is sufficient that it no longer needs to be demonstrated.</p>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">上善若水</div>
+    <div class="zh len">The highest good is like water</div>
+    <div class="en lzh">水的特质：低位 + 适应 + 持久 + 不争 + 藏而不露的力量。柔软不是软弱——真正的柔软，来自内心足够强大、已无需不断证明力量。</div>
+    <div class="en len">Water's qualities: low position, adaptability, persistence, lack of contention, hidden strength. Softness is not weakness — real softness comes from inner strength that no longer needs demonstrating.</div>
+  </div>
   <div class="maxim">
+    <span class="badge yong lzh">用 · 我的实践</span><span class="badge yong len">Use · my practice</span>
     <div class="zh lzh">外柔，内刚</div>
     <div class="zh len">Outer soft, inner firm</div>
     <div class="en lzh">Position flexible; principles firm.</div>
@@ -497,17 +609,30 @@
   <div class="sec-head">
     <span class="sec-num">肆</span>
     <div>
-      <h2 class="lzh">不争：停止需要赢下每一场游戏</h2>
-      <h2 class="len">No contention: stop needing to win every game</h2>
-      <div class="en">Stop needing to win every game</div>
+      <h2 class="lzh">不争 — 不争输赢，但守底线</h2>
+      <h2 class="len">No contention — don't fight for winning, do defend the line</h2>
+      <div class="en">Exit games whose prizes aren't worth having</div>
     </div>
   </div>
-  <p class="lead lzh">你成年生活的大部分时间，都活在处处被排名的环境里：头衔、薪水、绩效、专业、名声、财富。竞争有用，但终有一天你必须问：</p>
-  <p class="lead len">Much of your adult life has been spent in environments where almost everything is implicitly ranked: title, salary, performance, expertise, reputation, wealth. Competition has its use. But eventually you must ask:</p>
-  <blockquote class="lzh">Which games are still worth playing?<br><span class="zh">哪些游戏，还值得玩？</span></blockquote>
-  <blockquote class="len">Which games are still worth playing?<br><span class="zh">哪些游戏，还值得玩？</span></blockquote>
-  <p class="lzh">整部书的收束是八个字：<b>利而不害，为而不争</b>——创造利益而不加害；行动而不争夺占有与认可。</p>
-  <p class="len">The whole book reduces to: <b>benefit without harming; act without contending</b> for possession or recognition.</p>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">利而不害，为而不争</div>
+    <div class="zh len">Benefit without harming; act without contending</div>
+    <div class="en lzh">整部《道德经》的收束。</div>
+    <div class="en len">The closing words of the whole book.</div>
+  </div>
+  <p class="lead lzh"><b>不争，不是不守。</b>还有值得守护的东西：家人、诚实、健康、原则、依赖你的人。</p>
+  <p class="lead len"><b>Not contending is not not defending.</b> There are still things worth defending: family, integrity, health, principles, people who depend on you.</p>
+  <div class="maxim">
+    <div class="zh lzh small">不争输赢，但守底线。<br>不争面子，但守尊严。<br>不争功劳，但守责任。</div>
+    <div class="zh len small">Don't contest wins, but hold the line.<br>Don't contest face, but hold dignity.<br>Don't contest credit, but hold responsibility.</div>
+  </div>
+  <p class="lzh">否则，不争会悄悄变成回避冲突；道家的柔，不应变成被动。</p>
+  <p class="len">Otherwise, non-contention quietly becomes conflict avoidance; Daoist softness must not become passivity.</p>
+  <p class="lzh">你成年生活的大部分时间，都活在处处被排名的环境里：头衔、薪水、绩效、专业、名声、财富。竞争有用，但终有一天你必须问：</p>
+  <p class="len">Much of your adult life has been spent in environments where almost everything is implicitly ranked: title, salary, performance, expertise, reputation, wealth. Competition has its use. But eventually you must ask:</p>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>Which games are still worth playing?<br><span class="zh">哪些游戏，还值得玩？</span></blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>Which games are still worth playing?<br><span class="zh">哪些游戏，还值得玩？</span></blockquote>
   <p class="lzh">这不等于故意认输。而是变得日益<b>「游戏独立」</b>：</p>
   <p class="len">This does not mean losing deliberately. It means becoming increasingly <b>game-independent</b>:</p>
   <ul>
@@ -523,11 +648,9 @@
   <div class="maxim">
     <div class="zh lzh">最容易赢的竞争，是你已不需要参加的竞争。</div>
     <div class="zh len">The easiest competition to win is the one you no longer need to enter.</div>
-    <div class="en lzh">The easiest competition to win is the one you no longer need to enter.</div>
-    <div class="en len">The easiest competition to win is the one you no longer need to enter.</div>
+    <div class="en lzh">你对外部认可越不迫切，你就越难被击败。</div>
+    <div class="en len">The less desperate you are for external validation, the more formidable you become.</div>
   </div>
-  <p class="lzh">讽刺的是：你对外部认可越不迫切，你就越难被击败。</p>
-  <p class="len">And ironically, the less desperate you become for external validation, the more formidable you tend to become.</p>
 </section>
 
 <!-- ============ 5 ============ -->
@@ -535,17 +658,22 @@
   <div class="sec-head">
     <span class="sec-num">伍</span>
     <div>
-      <h2 class="lzh">「反者道之动」：物极必反，为反转留余地</h2>
-      <h2 class="len">Reversal is the movement of the Dao — at extremes, expect the turn</h2>
-      <div class="en">When things become extreme, look for the reversal</div>
+      <h2 class="lzh">反 — 不预测反转，为反转留余地</h2>
+      <h2 class="len">Reversal — don't predict the turn, prepare for it</h2>
+      <div class="en">Cycles, optionality, humility</div>
     </div>
   </div>
-  <p class="lead lzh">成功里藏着失败的种子；失败里有时藏着成功的种子。强制造脆弱；弱促成适应；稀缺生纪律；丰裕生懈怠。</p>
-  <p class="lead len">Success contains the seeds of failure; failure sometimes contains the seeds of success. Strength creates vulnerability; weakness creates adaptation; scarcity creates discipline; abundance creates complacency.</p>
-  <p class="lzh">但去掉玄学化的「坏事必转好」——<b>没有保证。</b>可用的原则只有一条：</p>
-  <p class="len">But strip away the mystical "bad things must turn good" — <b>there is no guarantee.</b> The useful principle is only this:</p>
-  <blockquote class="lzh">Never assume the current state will persist.<br><span class="zh">永远不要假设现状会持续。</span></blockquote>
-  <blockquote class="len">Never assume the current state will persist.<br><span class="zh">永远不要假设现状会持续。</span></blockquote>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">反者道之动</div>
+    <div class="zh len">Reversal is the movement of the Dao</div>
+    <div class="en lzh">成功里藏着失败的种子；失败里有时藏着成功的种子。强制造脆弱；弱促成适应；稀缺生纪律；丰裕生懈怠。</div>
+    <div class="en len">Success contains the seeds of failure; failure sometimes contains the seeds of success. Strength creates vulnerability; weakness creates adaptation; scarcity creates discipline; abundance creates complacency.</div>
+  </div>
+  <p class="lzh">但去掉玄学化的「坏事必转好」——<b>没有保证。</b>不预测反转，只为反转留余地。预测仍是一种自大；准备，才是谦卑。</p>
+  <p class="len">But strip away the mystical "bad things must turn good" — <b>there is no guarantee.</b> Don't predict the reversal; prepare for it. Prediction is still arrogance; preparation is humility.</p>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>Never assume the current state will persist.<br><span class="zh">永远不要假设现状会持续。</span></blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>Never assume the current state will persist.<br><span class="zh">永远不要假设现状会持续。</span></blockquote>
   <div class="two-col">
     <div class="panel">
       <h4><span class="tag lzh">坏</span><span class="tag len">Down</span><span class="lzh">当事情很糟时</span><span class="len">When things are going badly</span></h4>
@@ -597,22 +725,38 @@
   <div class="sec-head">
     <span class="sec-num">陆</span>
     <div>
-      <h2 class="lzh">知足 + 知止：定义「够」</h2>
-      <h2 class="len">Contentment + restraint: define "enough"</h2>
-      <div class="en">Define “enough”</div>
+      <h2 class="lzh">止 — 定义「够」</h2>
+      <h2 class="len">Enough — define "enough"</h2>
+      <div class="en">Freedom ≈ Resources ÷ Wants</div>
     </div>
   </div>
-  <p class="lead lzh">大多数人把财富定义为「我拥有什么」。道家的定义不同：</p>
-  <p class="lead len">Most people define wealth as what I possess. The Daoist definition differs:</p>
-  <div class="maxim">
-    <div class="zh lzh">财富 = 资源 ÷ 欲望</div>
-    <div class="zh len">Wealth = Resources ÷ Wants</div>
-    <div class="note lzh">提高分子是积累；降低分母，自由即刻到来。没有那个明确的「够了的数字」，这场游戏就永远没有终点线。</div>
-    <div class="note len">Raise the numerator and you accumulate; shrink the denominator and freedom arrives at once. Without an explicit "enough number," the game has no finish line.</div>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">知足者富，知止不殆</div>
+    <div class="zh len">One who knows contentment is rich; one who knows when to stop is safe.</div>
+    <div class="en lzh">《道德经》第三十三、四十四章</div>
+    <div class="en len">Dao De Jing, Chapters 33 & 44</div>
   </div>
-  <p class="lzh">假设一个人已达财务安全，却仍以睡眠、健康、家庭时间、平静、自由为代价，把已经舒服的数字推得更高——<br>
+  <p class="lead lzh">大多数人把财富定义为「我拥有什么」。但整页哲学真正关心的不是财富——是<b>自由</b>。</p>
+  <p class="lead len">Most people define wealth as what I possess. But this whole philosophy is not really about wealth — it is about <b>freedom</b>.</p>
+  <div class="maxim">
+    <span class="badge yong lzh">用 · 我的定义</span><span class="badge yong len">Use · my definition</span>
+    <div class="zh lzh">自由 ≈ 资源 ÷ 欲望</div>
+    <div class="zh len">Freedom ≈ Resources ÷ Wants</div>
+    <div class="en lzh small" style="font-style:normal; text-align:left; margin-top:14px;">
+      资源：金钱、健康、时间、能力、关系。<br>
+      欲望：地位、消费、认可、控制、攀比。
+    </div>
+    <div class="en len small" style="font-style:normal; text-align:left; margin-top:14px;">
+      Resources: money, health, time, competence, relationships.<br>
+      Wants: status, consumption, approval, control, comparison.
+    </div>
+    <div class="note lzh">自由有两条路：增加资源，减少欲求。前半生，我们比较擅长第一条；下一程，要学第二条。</div>
+    <div class="note len">Freedom has two paths: increase resources, or reduce wants. In the first half of life we are better at the first; in the next stage, we must learn the second.</div>
+  </div>
+  <p class="lzh">没有那个明确的「够了的数字」，这场游戏就永远没有终点线。假设一个人已达财务安全，却仍以睡眠、健康、家庭时间、平静、自由为代价，把已经舒服的数字推得更高——<br>
   经济上，他在变富；<b>哲学上，他在变穷。</b></p>
-  <p class="len">Suppose someone has reached financial security yet still sacrifices sleep, health, family time, peace and freedom to push a comfortable number higher —<br>
+  <p class="len">Without an explicit "enough number," the game has no finish line. Suppose someone has reached financial security yet still sacrifices sleep, health, family time, peace and freedom to push a comfortable number higher —<br>
   economically, he grows richer; <b>philosophically, he grows poorer.</b></p>
   <blockquote class="lzh">
     应该有一个时刻：<br>
@@ -629,13 +773,20 @@
   <div class="sec-head">
     <span class="sec-num">柒</span>
     <div>
-      <h2 class="lzh">功成而弗居：从成就，转向传承</h2>
-      <h2 class="len">Accomplish without dwelling: shift from achievement to legacy</h2>
-      <div class="en">Shift from achievement → legacy</div>
+      <h2 class="lzh">弗居 — 成事，不必占有成果</h2>
+      <h2 class="len">Not dwelling — accomplish, don't possess the result</h2>
+      <div class="en">Make yourself unnecessary; let things continue</div>
     </div>
   </div>
-  <p class="lead lzh">前半生：「看我做到了什么。」后半生：「看我身后还能继续什么。」</p>
-  <p class="lead len">First half: "Look what I can do." Second half: "Look what can continue without me."</p>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">功成而弗居</div>
+    <div class="zh len">Accomplish the work, yet do not dwell in it</div>
+    <div class="en lzh">不是「人们应该记住我」，而是「这件事在我离开之后，仍能继续」。</div>
+    <div class="en len">Not "people should remember me," but "the thing should continue without needing me."</div>
+  </div>
+  <p class="lead lzh">前半生：「看我做到了什么。」下一程：「看我身后还能继续什么。」</p>
+  <p class="lead len">First half: "Look what I can do." Next stage: "Look what can continue without me."</p>
   <ul>
     <li class="lzh">不再做屋里最聪明的人——<b>教判断</b>。</li>
     <li class="len">Instead of being the cleverest person in the room — <b>teach judgment</b>.</li>
@@ -648,12 +799,14 @@
     <li class="lzh">不再累积履历——<b>累积因你而在的人、系统与思想</b>。</li>
     <li class="len">Instead of accumulating a CV — <b>accumulate people, systems and ideas that became better because you were there</b>.</li>
   </ul>
+  <p class="lzh">「传承」也可以成为另一个自我工程——「我必须留下点什么」。那反而违背了弗居。所以，传承而不占有。检验只有一个：</p>
+  <p class="len">"Legacy" itself can become another ego project — "I must leave something behind." That ironically contradicts not-dwelling. So: pass on, without possessing. There is one test:</p>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>如果没有我的名字，这件事还能继续，我是否仍然满意？</blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>If this thing could continue without my name on it, would I still be satisfied?</blockquote>
   <p class="lzh">这也是你对「知识如何被结构化、转移、制度化」的兴趣远超当下工作之处的原因——它问的是一个更大的问题：</p>
   <p class="len">This is also why your interest in how knowledge gets structured, transferred and institutionalised matters beyond your current work — it asks a larger question:</p>
   <blockquote class="lzh">How does what I know survive beyond my direct involvement?<br><span class="zh">我所知道的，如何在我直接参与之外继续存在？</span></blockquote>
   <blockquote class="len">How does what I know survive beyond my direct involvement?<br><span class="zh">我所知道的，如何在我直接参与之外继续存在？</span></blockquote>
-  <p class="lzh">这是传承之问，而不仅仅是知识管理之问。</p>
-  <p class="len">That is a legacy question, not merely a knowledge-management question.</p>
 </section>
 
 <!-- ============ 8 ============ -->
@@ -661,125 +814,81 @@
   <div class="sec-head">
     <span class="sec-num">捌</span>
     <div>
-      <h2 class="lzh">静：在静定中做重要决定</h2>
-      <h2 class="len">Stillness: make important decisions from stillness</h2>
-      <div class="en">Make important decisions from stillness</div>
+      <h2 class="lzh">慈 — 有力量，而不以力量伤人</h2>
+      <h2 class="len">Compassion — have strength, without hurting with it</h2>
+      <div class="en">With employees, family, and yourself</div>
     </div>
   </div>
-  <p class="lead lzh">「静」不是打坐。它意味着：</p>
-  <p class="lead len">Stillness is not meditation. It means:</p>
-  <blockquote class="lzh">Never make consequential decisions from psychological noise.<br><span class="zh">永远不要在心理噪声中做重大决定。</span></blockquote>
-  <blockquote class="len">Never make consequential decisions from psychological noise.<br><span class="zh">永远不要在心理噪声中做重大决定。</span></blockquote>
-  <p class="lzh">噪声包括：恐惧、FOMO、愤怒、自我、难堪、兴奋、证明别人错了的需要——市场崩盘、市场暴涨、别人赞美你、别人批评你。</p>
-  <p class="len">Noise includes: fear, FOMO, anger, ego, embarrassment, excitement, the need to prove someone wrong — markets crashing, markets booming, people praising you, people criticising you.</p>
-  <p class="lzh">所以重大决定之前，<b>先制造距离</b>。两个可用的检验：</p>
-  <p class="len">Before an important decision, therefore: <b>create distance</b>. Two useful tests:</p>
-  <div class="two-col">
-    <div class="panel">
-      <h4><span class="tag lzh">试一</span><span class="tag len">Test I</span><span class="lzh">隐名之问</span><span class="len">The anonymous question</span></h4>
-      <p class="lzh">「如果除了我没人知道这个决定，我还会做吗？」</p>
-      <p class="len">"If nobody knew about this decision except me, would I still make it?"</p>
-      <p class="hint lzh">去掉大量自我。</p>
-      <p class="hint len">Removes an extraordinary amount of ego.</p>
-    </div>
-    <div class="panel">
-      <h4><span class="tag lzh">试二</span><span class="tag len">Test II</span><span class="lzh">十年之问</span><span class="len">The ten-year question</span></h4>
-      <p class="lzh">「如果我要与这个决定共处十年，而不是十天，我会选得不一样吗？」</p>
-      <p class="len">"If I had to live with this decision for ten years rather than ten days, would I choose differently?"</p>
-      <p class="hint lzh">去掉噪声。</p>
-      <p class="hint len">Removes noise.</p>
-    </div>
+  <div class="maxim" style="margin-top:0;">
+    <span class="badge dao lzh">道 · 原理</span><span class="badge dao len">Dao · principle</span>
+    <div class="zh lzh">我有三宝，持而保之：一曰慈，二曰俭，三曰不敢为天下先。</div>
+    <div class="zh len">I have three treasures, held and kept: the first is compassion, the second frugality, the third not daring to be first in the world.</div>
+    <div class="en lzh">《道德经》第六十七章。俭与不敢为天下先，前面已有很多；相对缺少的，是慈。</div>
+    <div class="en len">Dao De Jing, Chapter 67. Frugality and not-daring-to-be-first are already well covered above; what is relatively absent is compassion.</div>
   </div>
-  <blockquote class="lzh">静不是不动。<br>静，是让良好判断成为可能的心智空间。</blockquote>
-  <blockquote class="len">Stillness is not inactivity.<br>It is the psychological space in which good judgment becomes possible.</blockquote>
-</section>
-
-<!-- ============ 9 family ============ -->
-<section id="s9">
-  <div class="sec-head">
-    <span class="sec-num">玖</span>
-    <div>
-      <h2 class="lzh">家，改变整个方程</h2>
-      <h2 class="len">And family changes the whole equation</h2>
-      <div class="en">And family changes the whole equation</div>
-    </div>
-  </div>
-  <p class="lead lzh">未来十年，有一件事高于事业与金钱：你有一个很小的女儿。</p>
-  <p class="lead len">Over the coming decade, one thing ranks above career and money: you have a very young daughter.</p>
-  <p class="lzh">这意味着你人生这一阶段有个特别之处：<b>她的童年，与你职业的后半程，正同时发生。</b></p>
-  <p class="len">This makes this phase of your life unusual: <b>her childhood and your later career years are happening simultaneously.</b></p>
+  <p class="lead lzh">慈不是滥情，也不是软弱。它是：<b>随着能力增长，变得更温和，而不是更硬。</b></p>
+  <p class="lead len">Compassion is not sentimentality, nor weakness. It is: <b>as capability increases, become gentler rather than harder.</b></p>
   <ul>
-    <li class="lzh">事业机会会再来。</li>
-    <li class="len">Career opportunities recur.</li>
-    <li class="lzh">投资机会会再来。</li>
-    <li class="len">Investment opportunities recur.</li>
-    <li class="lzh">项目会再来。</li>
-    <li class="len">Projects recur.</li>
-    <li class="lzh"><b>孩子两岁、五岁、八岁、十二岁——不会再来。</b></li>
-    <li class="len"><b>A child being 2, 5, 8, 12 does not recur.</b></li>
+    <li class="lzh">对下属——不羞辱。力量不需要靠伤害来显示。</li>
+    <li class="len">With employees — don't humiliate. Strength needs no display through harm.</li>
+    <li class="lzh">对家人——不把人物化。家人不是要优化的项目。</li>
+    <li class="len">With family — don't treat people as things. Family is not a project to be optimised.</li>
+    <li class="lzh">对自己——不把每个不完美都当作需要修正的缺陷。</li>
+    <li class="len">With yourself — don't treat every imperfection as a defect requiring correction.</li>
+    <li class="lzh">对不如自己懂的人——不把知识当武器。</li>
+    <li class="len">With those who know less — don't use knowledge as a weapon.</li>
+    <li class="lzh">对年迈的父母、年幼的孩子、同事——看见他们的局限。</li>
+    <li class="len">With ageing parents, young children, colleagues — recognise their limitations.</li>
   </ul>
-  <p class="lzh">你不需要同时把每个维度最大化。人生有季节：</p>
-  <p class="len">You don't have to maximise every dimension simultaneously. There are seasons:</p>
-  <div class="maxim">
-    <div class="zh lzh">春生，夏长，秋收，冬藏</div>
-    <div class="zh len">Spring grows, summer extends, autumn harvests, winter stores.</div>
-    <div class="note lzh">有的时期用于建造，有的用于收获，有的用于守护，有的用于在场。</div>
-    <div class="note len">Some periods are for building, some for harvesting, some for protecting, some for being present.</div>
-  </div>
-  <p class="lzh">智慧的人生，不在每个季节都要求最大产出——它先认出<b>现在是什么季节</b>。</p>
-  <p class="len">A wise life does not demand maximum output in every season — it first recognises <b>which season it is</b>.</p>
+  <blockquote class="lzh"><span class="badge yong">用 · 我的实践</span>有能力的人，温柔是一种选择，而不是弱点。</blockquote>
+  <blockquote class="len"><span class="badge yong">用 · my practice</span>For the capable, gentleness is a choice, not a weakness.</blockquote>
 </section>
 
-<!-- ============ rules ============ -->
-<section id="rules">
+<!-- ============ summary ============ -->
+<section id="summary">
   <div class="sec-head">
-    <span class="sec-num">律</span>
+    <span class="sec-num">纲</span>
     <div>
-      <h2 class="lzh">下一个十年，浓缩为七条律</h2>
-      <h2 class="len">The next decade, distilled into seven rules</h2>
-      <div class="en">Seven rules for the next 10–15 years</div>
+      <h2 class="lzh">一图：根、枝、果</h2>
+      <h2 class="len">The map: root, branches, fruit</h2>
+      <div class="en">Stillness is the root · eight practices are branches · inner freedom is the fruit</div>
     </div>
   </div>
+  <p class="lzh" style="text-align:center;">静为<b>根</b>，八法为<b>枝</b>，内在自由为<b>果</b>。</p>
+  <p class="len" style="text-align:center;">Stillness is the <b>root</b>, eight practices are the <b>branches</b>, inner freedom is the <b>fruit</b>.</p>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
           <th>#</th>
-          <th class="lzh">律</th>
-          <th class="len">Rule</th>
-          <th class="lzh">对你的意义</th>
-          <th class="len">Meaning for you</th>
+          <th class="lzh">枝 · 法</th>
+          <th class="len">Branch · practice</th>
+          <th class="lzh">我的实践</th>
+          <th class="len">My practice</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="num">1</td><td class="zh lzh">少则得</td><td class="zh len">Less is more</td><td class="lzh">做更少的事，但把重要的做深。</td><td class="len">Do fewer things, but do the important ones deeply.</td></tr>
-        <tr><td class="num">2</td><td class="zh lzh">无为</td><td class="zh len">Wu wei</td><td class="lzh">控制条件；停止试图控制结果。</td><td class="len">Control conditions; stop trying to control outcomes.</td></tr>
-        <tr><td class="num">3</td><td class="zh lzh">上善若水</td><td class="zh len">Be water</td><td class="lzh">外面保持适应，里面保持坚定。</td><td class="len">Stay adaptable outside and strong inside.</td></tr>
-        <tr><td class="num">4</td><td class="zh lzh">不争</td><td class="zh len">No contention</td><td class="lzh">停止进入奖品已不再值得的游戏。</td><td class="len">Stop entering games whose prizes you no longer value.</td></tr>
-        <tr><td class="num">5</td><td class="zh lzh">反者道之动</td><td class="zh len">Reversal</td><td class="lzh">在极端处预期反转；永远保留选择权。</td><td class="len">At extremes, anticipate reversal; maintain optionality.</td></tr>
-        <tr><td class="num">6</td><td class="zh lzh">知足知止</td><td class="zh len">Know enough</td><td class="lzh">在无尽积累消耗生命之前，知道「够」。</td><td class="len">Know what "enough" means before endless accumulation consumes life.</td></tr>
-        <tr><td class="num">7</td><td class="zh lzh">功成弗居</td><td class="zh len">Not dwelling</td><td class="lzh">从证明自己，走向成就他人、留下传承。</td><td class="len">Move from proving yourself to enabling others and leaving something behind.</td></tr>
+        <tr><td class="num">1</td><td class="zh lzh">少则得</td><td class="zh len">Less is more</td><td class="lzh">从积累走向选择——做更少的事，但把重要的做深。</td><td class="len">From accumulation to selection — do fewer things, deeply.</td></tr>
+        <tr><td class="num">2</td><td class="zh lzh">无为</td><td class="zh len">Wu wei</td><td class="lzh">尽人事，不强求结果——控制条件，不控制结果。</td><td class="len">Do your part, don't force the outcome — control conditions, not outcomes.</td></tr>
+        <tr><td class="num">3</td><td class="zh lzh">上善若水</td><td class="zh len">Be water</td><td class="lzh">外柔内刚——适应而不失去原则。</td><td class="len">Flexible outside, firm inside — adapt without losing principles.</td></tr>
+        <tr><td class="num">4</td><td class="zh lzh">不争</td><td class="zh len">No contention</td><td class="lzh">不争输赢，但守底线。</td><td class="len">Don't contest wins, but hold the line.</td></tr>
+        <tr><td class="num">5</td><td class="zh lzh">反者道之动</td><td class="zh len">Reversal</td><td class="lzh">不预测反转，为反转留余地——保留选择权。</td><td class="len">Don't predict the turn, prepare for it — preserve optionality.</td></tr>
+        <tr><td class="num">6</td><td class="zh lzh">知足知止</td><td class="zh len">Know enough</td><td class="lzh">定义「够」——自由 ≈ 资源 ÷ 欲望。</td><td class="len">Define "enough" — freedom ≈ resources ÷ wants.</td></tr>
+        <tr><td class="num">7</td><td class="zh lzh">功成弗居</td><td class="zh len">Not dwelling</td><td class="lzh">成事，不必占有成果——让自己可被替代。</td><td class="len">Accomplish, don't possess — make yourself unnecessary.</td></tr>
+        <tr><td class="num">8</td><td class="zh lzh">慈</td><td class="zh len">Compassion</td><td class="lzh">有力量，而不以力量伤人。</td><td class="len">Have strength, without hurting with it.</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="lzh" style="text-align:center; margin-top:26px;">而七律之下，唯有一字：</p>
-  <p class="len" style="text-align:center; margin-top:26px;">And beneath all seven rules, a single character:</p>
-  <div class="maxim">
-    <div class="zh lzh">静</div>
-    <div class="zh len">Stillness</div>
-    <div class="en lzh">Without an inner centre, you won't know what is enough — which games not to play, when to act, when to wait, when to hold, and when to let go.</div>
-    <div class="en len">Without an inner centre, you won't know what is enough — which games not to play, when to act, when to wait, when to hold, and when to let go.</div>
-  </div>
 </section>
 
-<!-- ============ 10 ============ -->
-<section id="s10">
+<!-- ============ 终 ============ -->
+<section id="s9">
   <div class="sec-head">
     <span class="sec-num">终</span>
     <div>
-      <h2 class="lzh">你哲学中最大的改变</h2>
-      <h2 class="len">The biggest change in your philosophy</h2>
-      <div class="en">The biggest change in your philosophy</div>
+      <h2 class="lzh">内在自由</h2>
+      <h2 class="len">Inner freedom</h2>
+      <div class="en">How much power does the external world have over your internal state?</div>
     </div>
   </div>
   <p class="lead lzh">你已经为「如何在外部世界立足」建立了相当强的哲学——事业、投资、选择权、第一性原理、系统思维、家庭。下一步的进化，可能不同：</p>
@@ -806,32 +915,47 @@
   </ul>
   <p class="lzh">当答案越来越趋向「是」，你就得到了金钱与头衔买不到的东西：</p>
   <p class="len">When the answer becomes increasingly "yes," you acquire what money and title cannot buy:</p>
-  <div class="maxim">
-    <div class="zh lzh">内在自由</div>
-    <div class="zh len">Inner freedom</div>
-    <div class="en lzh">Inner freedom</div>
-    <div class="en len">Inner freedom</div>
-  </div>
   <div class="closing">
-    <div class="seal-mini">道</div>
+    <div class="seal-mini">自由</div>
+    <div class="verse lzh">
+      外界可以改变我的处境，<br>
+      但不必决定我的内心。<br><br>
+      得，不足以使我狂。<br>
+      失，不足以使我乱。<br>
+      誉，不足以使我增。<br>
+      毁，不足以使我减。<br><br>
+      <em>我仍然是我。</em>
+    </div>
+    <div class="verse len">
+      The world can change my circumstances,<br>
+      but it need not decide my mind.<br><br>
+      Gain cannot make me giddy.<br>
+      Loss cannot unsettle me.<br>
+      Praise cannot add to me.<br>
+      Blame cannot subtract from me.<br><br>
+      <em>I am still myself.</em>
+    </div>
     <div class="zh-big lzh">
       年轻时，我们靠得到东西建立自己。<br>
-      到了人生后半场，我们靠<em>「不再需要那么多东西」</em>找回自己。
+      到了下一程，我们靠<em>「不再需要那么多东西」</em>找回自己。
     </div>
     <div class="zh-big len">
       In youth, we build ourselves by acquiring.<br>
-      In the second half of life, we rediscover ourselves by <em>needing less</em>.
+      In the next stage, we rediscover ourselves by <em>needing less</em>.
     </div>
     <div class="en lzh">
-      这比「柔能克刚」或「以退为进」更值得带进你下一个十年。<br><br>
       The first half of life is often about acquiring.<br>
       The second half is learning what you can release without becoming less.
     </div>
     <div class="en len">
       The first half of life is often about acquiring.<br>
-      The second half is learning what you can release without becoming less.<br><br>
-      That, more than 柔能克刚 or 以退为进, is the Daoist wisdom to carry into your next 10–15 years.
+      The second half is learning what you can release without becoming less.
     </div>
+  </div>
+  <div class="final-seal">
+    <div class="zh lzh">利而不害，为而不争</div>
+    <div class="zh len">Benefit without harming; act without contending</div>
+    <div class="en">《道德经》第八十一章 — the end.</div>
   </div>
 </section>
 
@@ -842,8 +966,8 @@
 <footer>
   <div class="zh lzh">利而不害，为而不争</div>
   <div class="zh len">Act to benefit, never to contend</div>
-  <span class="lzh">Tao De Jing Almanac · 道德经人生年历<br>甲辰 · 静</span>
-  <span class="len">Tao De Jing Almanac · 道德经人生年历<br>Stillness</span>
+  <span class="lzh">《道德经 · 下一程》 · 静为根 · 自由为果</span>
+  <span class="len">Tao De Jing · The Next Stage · Stillness as root · Freedom as fruit</span>
 </footer>
 
 <script>
