@@ -113,6 +113,21 @@
     background: var(--gold);
     margin: 0 auto 26px;
   }
+  .epigraph {
+    max-width: 640px;
+    margin: 0 auto 30px;
+    font-family: Georgia, "Songti SC", "STSong", serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 2;
+  }
+  .epigraph .attrib {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: 2px;
+  }
   .masthead p {
     max-width: 640px;
     margin: 0 auto;
@@ -298,9 +313,17 @@
   .closing .zh-big em { font-style: normal; color: var(--seal); }
   .closing .verse { font-size: 18px; letter-spacing: 3px; line-height: 2; margin: 18px auto; max-width: 560px; }
   .closing .en { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: var(--ink-soft); max-width: 560px; margin: 0 auto; line-height: 1.9; }
+  .return-line {
+    text-align: center;
+    margin: 44px auto 0;
+    font-size: 15.5px;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: 2px;
+  }
   .final-seal {
     text-align: center;
-    margin: 56px auto 0;
+    margin: 40px auto 0;
   }
   .final-seal .zh { font-size: 26px; letter-spacing: 8px; margin-bottom: 8px; }
   .final-seal .en { font-size: 13px; color: var(--ink-faint); letter-spacing: 3px; font-family: Georgia, serif; font-style: italic; }
@@ -329,6 +352,11 @@
   <h1 class="title-zh">下一程</h1>
   <div class="title-en">Tao De Jing · The Next Stage</div>
   <div class="rule"></div>
+  <div class="epigraph">
+    <div class="lines lzh">我们探索不止，而一切探索的终点，<br>将是抵达我们出发的地方，<br>并第一次真正认识它。</div>
+    <div class="lines len">We shall not cease from exploration<br>And the end of all our exploring<br>Will be to arrive where we started<br>And know the place for the first time.</div>
+    <div class="attrib">— T. S. Eliot · <em>Four Quartets</em></div>
+  </div>
   <p class="lzh">以《道德经》为镜，为下一个十年而写的一份人生哲学。</p>
   <p class="len">A personal philosophy for the next decade, written with the Dao De Jing as its mirror.</p>
   <div class="quote">
@@ -952,6 +980,8 @@
       The second half is learning what you can release without becoming less.
     </div>
   </div>
+  <p class="return-line lzh">走了很远，最后不是回到原点，而是终于看懂了原点。</p>
+  <p class="return-line len">We return not to where we began, but to finally understand it.</p>
   <div class="final-seal">
     <div class="zh lzh">利而不害，为而不争</div>
     <div class="zh len">Benefit without harming; act without contending</div>
