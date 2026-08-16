@@ -30,7 +30,7 @@
   /* ---------- masthead ---------- */
   .masthead {
     position: relative;
-    padding: 96px 24px 72px;
+    padding: 34px 24px 72px;
     text-align: center;
     background:
       radial-gradient(ellipse 60% 40% at 50% 0%, rgba(168,178,98,.1), transparent 70%),
@@ -58,8 +58,15 @@
     border-radius: 6px;
     letter-spacing: 2px;
     box-shadow: 0 2px 12px rgba(31,122,77,.35);
-    margin-bottom: 28px;
+    margin-bottom: 0;
     writing-mode: horizontal-tb;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1080px;
+    margin: 0 auto;
   }
   .title-zh {
     font-size: 52px;
@@ -125,10 +132,6 @@
   }
   nav a:hover { color: var(--seal); border-bottom-color: var(--seal); }
   #langToggle {
-    position: fixed;
-    top: 18px;
-    right: 22px;
-    z-index: 100;
     font-family: inherit;
     font-size: 13px;
     letter-spacing: 1px;
@@ -136,7 +139,7 @@
     background: var(--seal);
     border: none;
     border-radius: 20px;
-    padding: 6px 18px;
+    padding: 7px 20px;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(31,122,77,.3);
     transition: background .2s, box-shadow .2s;
@@ -284,7 +287,10 @@
 <body>
 
 <header class="masthead">
-  <div class="seal">道德经</div>
+  <div class="topbar">
+    <div class="seal">道德经</div>
+    <button id="langToggle" type="button">EN</button>
+  </div>
   <h1 class="title-zh">人生年历</h1>
   <div class="title-en">Tao De Jing · Almanac</div>
   <div class="rule"></div>
@@ -310,7 +316,6 @@
   <a href="#s9"><span class="lzh">家</span><span class="len">Family</span></a>
   <a href="#rules"><span class="lzh">七律</span><span class="len">Seven Rules</span></a>
   <a href="#s10"><span class="lzh">内在自由</span><span class="len">Inner Freedom</span></a>
-  <button id="langToggle" type="button">EN</button>
 </nav>
 
 <main>
